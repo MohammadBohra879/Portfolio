@@ -1,0 +1,361 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #081b29;
+    color: #ededed;
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* Links & Focus States */
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+}
+
+a:focus,
+button:focus,
+input:focus {
+    outline: 3px solid #00abf0;
+    outline-offset: 12px;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 10%;
+    background: #081b29;
+    display: inline-flex;
+    justify-content: space-between;
+    z-index: 7;
+    transition: all 0.3s ease;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: 600;
+    position: relative;
+    opacity: 0;
+    animation: slideRight 1s ease forwards;
+    color: #ededed;
+}
+
+.logo::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #00abf0, #0099cc);
+    transition: width 0.3s ease;
+}
+
+.logo:hover::after {
+    width: 100%;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+}
+
+.navbar a {
+    font-size: 18px;
+    font-weight: 500;
+    position: relative;
+    opacity: 0;
+    animation: slideTop 0.5s ease forwards;
+    animation-delay: calc(0.2s * var(--i));
+}
+
+.navbar a::before,
+.navbar a::after {
+    content: '';
+    position: absolute;
+    transition: all 0.3s ease;
+}
+
+.navbar a::before {
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 171, 240, 0.1), transparent);
+    z-index: -1;
+}
+
+.navbar a:hover::before {
+    width: 100%;
+}
+
+.navbar a::after {
+    bottom: -5px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: #00abf0;
+    transform: translateX(-50%);
+}
+
+.navbar a:hover,
+.navbar a.active {
+    color: #00abf0;
+    text-shadow: 0 0 10px rgba(0, 171, 240, 0.5);
+}
+
+.navbar a:hover::after,
+.navbar a.active::after {
+    width: 100%;
+}
+
+
+.home {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 0 10%;
+    background: url('./1.jpg') center/cover no-repeat;
+    overflow: hidden;
+}
+
+.home::before,
+.home::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 1;
+}
+
+.home::before {
+    background: linear-gradient(45deg, rgba(8, 27, 41, 0.8), rgba(0, 171, 240, 0.1));
+}
+
+.home::after {
+    background: radial-gradient(circle at 20% 50%, rgba(0, 171, 240, 0.1) 0%, transparent 50%);
+}
+
+.profile-image {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    z-index: 2;
+    transition: transform 0.3s ease;
+    animation: float 6s ease-in-out infinite;
+}
+
+.home-content {
+    position: relative;
+    max-width: 600px;
+    z-index: 2;
+    opacity: 0;
+    animation: slideLeft 1s ease forwards;
+    animation-delay: 1s;
+}
+
+.home-content h1 {
+    font-size: 56px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, #ededed, #00abf0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: textGlow 3s ease-in-out infinite alternate;
+}
+
+.home-content h1 b {
+    color: #00abf0;
+    text-shadow: 0 0 20px rgba(0, 171, 240, 0.5);
+    animation: pulse infinite ;
+}
+
+.home-content h3 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    opacity: 0;
+    animation: slideUp 1s ease forwards;
+    animation-delay: 1.3s;
+}
+
+.home-content p {
+    font-size: 16px;
+    margin: 20px 0 40px;
+    color: rgba(237, 237, 237, 0.8);
+    opacity: 0;
+    animation: slideUp 1s ease forwards;
+    animation-delay: 1.5s;
+}
+
+.btn-box {
+    display: flex;
+    gap: 15px;
+    opacity: 0;
+    animation: slideUp 1s ease forwards;
+    animation-delay: 1.7s;
+}
+
+.btn-box a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 250px;
+    height: 50px;
+    font-size: 19px;
+    font-weight: 600;
+    border-radius: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 2px solid #00abf0;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: all 0.5s ease;
+}
+
+.btn-box a{
+    background: #00abf0;
+    color: #081b29;
+}
+
+.btn-box a:hover {
+    color: #081b29;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0, 171, 240, 0.3);
+}
+
+.btn-box a::before,
+.btn-box a::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 0; height: 100%;
+    transition: all 0.5s ease;
+}
+
+.btn-box a::before {
+    left: -100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+}
+
+.btn-box a:hover::before {
+    left: 100%;
+}
+
+.btn-box a::after {
+    background: #00abf0;
+    z-index: -1;
+}
+
+.btn-box a:hover::after {
+    width: 100%;
+}
+
+ footer {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 40px 10%;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .home-sci {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .home-sci a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            font-size: 24px;
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .home-sci a:hover {
+            background: #0ef;
+            border-color: #0ef;
+            box-shadow: 0 0 15px #0ef;
+            transform: scale(1.1);
+        }
+
+/* =============================
+   Animations
+============================= */
+@keyframes slideRight { from {transform:translateX(-100px);opacity:0;} to {transform:translateX(0);opacity:1;} }
+@keyframes slideLeft { from {transform:translateX(100px);opacity:0;} to {transform:translateX(0);opacity:1;} }
+@keyframes slideTop { from {transform:translateY(-100px);opacity:0;} to {transform:translateY(0);opacity:1;} }
+@keyframes slideUp { from {transform:translateY(100px);opacity:0;} to {transform:translateY(0);opacity:1;} }
+@keyframes float { 0%,100% {transform:translateY(0)} 50% {transform:translateY(-20px)} }
+@keyframes pulse { 0%,100% {transform:scale(1)} 50% {transform:scale(1.05)} }
+@keyframes textGlow { 0%,100% {text-shadow:0 0 20px rgba(0,171,240,.5)} 50% {text-shadow:0 0 40px rgba(0,171,240,.8)} }
+
+
+@media (max-width: 768px) {
+    .header { padding: 15px 5%; }
+    .navbar a { font-size: 16px; }
+    .home { padding: 0 5%; }
+    .profile-image { width: 150px; height: 150px; }
+    .home-content h1 { font-size: 40px; }
+    .home-content h3 { font-size: 24px; }
+    .btn-box { flex-direction: column; width: 100%; }
+    .btn-box a { width: 100%; height: 45px; font-size: 16px; }
+}
+
+@media (max-width: 480px) {
+    .logo { font-size: 22px; }
+    .navbar a { font-size: 14px; }
+    .profile-image { width: 100px; height: 100px; }
+    .home-content h1 { font-size: 32px; }
+    .home-content h3 { font-size: 20px; }
+    .btn-box a { height: 40px; font-size: 14px; }
+}
+
+
+@media (prefers-color-scheme: dark) {
+    .header { background: rgba(8, 27, 41, 0.95); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+@media (prefers-contrast: high) {
+    .home-content h1,
+    .home-content h3,
+    .home-content p {
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+    }
+}
