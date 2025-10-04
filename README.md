@@ -70,9 +70,6 @@ myportfolio/
 │
 │── package.json
 │── package-lock.json
-│── /node_modules
-│── /.vscode
-│     ├── settings.json
 
 ---
 
